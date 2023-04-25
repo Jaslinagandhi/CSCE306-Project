@@ -7,34 +7,30 @@
 #include "RequestLine.h"
 #include "HeaderLine.h"
 #include "HTTPMsg.h"
+#include "TCPSegment.h"
 
-std::tuple<std::string, std::string, std::string> goingThroughFile1();
-std::string goingThroughFile2();
+std::tuple<std::string, std::string, std::string> goingThroughGETFile1();
+std::string goingThroughGETFile2();
 
-HTTPMsg httpmsg() {
+int main() {
     //make string variables to hold values from file
     std::string method, URL, version;
     std::string host;
 
     //separate tuple into three separate variables
-    std::tie(method, URL, version) = goingThroughFile1();
+    std::tie(method, URL, version) = goingThroughGETFile1();
+    host = goingThroughGETFile2();
 
-    std::string vari1 = method;
-    std::string vari2 = URL;
-    std::string vari3 = version;
-
-    //put returned host into variable
-    std::string vari4 = host;
-
-    RequestLine rl(vari1, vari2, vari3, "\r", "\n");
-    HeaderLine hl(vari4);
+    RequestLine rl(method, URL, version, "\r", "\n");
+    HeaderLine hl(host);
 
     HTTPMsg httpmsg(rl, hl);
 
-    return httpmsg;
+    //tcp segment
+    TCPSegment tcps(httpmsg);
 }
 
-std::tuple<std::string, std::string, std::string> goingThroughFile1() {
+std::tuple<std::string, std::string, std::string> goingThroughGETFile1() {
     std::string method, URL, version;
     std::string line;
     std::ifstream GETFile("GET_request.txt");
@@ -46,13 +42,12 @@ std::tuple<std::string, std::string, std::string> goingThroughFile1() {
             std::getline(iss >> std::ws, URL, ' ');
             std::getline(iss >> std::ws, version);
             version.erase(version.end() - 4, version.end());
-            return std::make_tuple(method, URL, version);
         }
     }
-    return std::make_tuple("", "", "");
+    return std::make_tuple(method, URL, version);
 }
 
-std::string goingThroughFile2() {
+std::string goingThroughGETFile2() {
     std::string host;
     std::string line;
     std::ifstream GETFile("GET_request.txt");
@@ -60,7 +55,9 @@ std::string goingThroughFile2() {
     while (std::getline(GETFile, line)) {
         if (line.find("Host:") != std::string::npos) {
             std::istringstream iss{ line };
+            iss.ignore(std::numeric_limits<std::streamsize>::max(), ' '); // skip "Host:"
             std::getline(iss >> std::ws, host, ' '); // skip whitespace
+            host.erase(host.end() - 4, host.end());
             return host;
         }
     }

@@ -13,6 +13,7 @@ private:
     std::string body;
 
 public:
+    HTTPMsg() {};
 
     HTTPMsg(RequestLine rl, HeaderLine hl, std::string b = "") {
         this->rlo = rl;

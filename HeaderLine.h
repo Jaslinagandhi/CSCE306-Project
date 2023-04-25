@@ -11,5 +11,4 @@ public:
 	HeaderLine(std::string h) {
 		this->host = h;
 	}
-
 };
