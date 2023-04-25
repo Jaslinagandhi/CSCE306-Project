@@ -27,7 +27,10 @@ int main() {
     HTTPMsg httpmsg(rl, hl);
 
     //tcp segment
-    TCPSegment tcps(httpmsg);
+    //create and initialize variables for source and destination ports
+    __int16 sourcePort = 0;
+    __int16 destPort = 0;
+    TCPSegment tcps(httpmsg, sourcePort, destPort);
 }
 
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1() {
