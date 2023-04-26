@@ -20,4 +20,10 @@ public:
         this->hlo = hl;
         this->body = b;
     }
+
+    void toString() {
+        std::cout << "In HTTPmsg, following are the content of the msg:" << std::endl;
+        //print rlo and hlo
+
+    }
 };

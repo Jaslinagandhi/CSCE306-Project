@@ -20,4 +20,3 @@ public:
 		this->lf = lf;
 	};
 };
-
