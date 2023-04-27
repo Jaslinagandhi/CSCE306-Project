@@ -2,7 +2,6 @@
 #include <iostream> 
 #include <string>
 #include <list>
-
 #include "RequestLine.h"
 #include "HeaderLine.h"
 
@@ -19,5 +18,10 @@ public:
         this->rlo = rl;
         this->hlo = hl;
         this->body = b;
+    }
+
+    std::string toString() {
+        
+        std::cout << "In HTTPmsg, following are the content of the msg: " <<  rlo.toString() << std::endl;
     }
 };

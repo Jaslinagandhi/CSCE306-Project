@@ -11,6 +11,7 @@
 #include "NetworkLayer.h"
 #include "FrameLayer.h"
 
+
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1();
 std::string goingThroughGETFile2();
 
@@ -38,7 +39,7 @@ int main() {
     NetworkLayer network();
 
     //link layer
-    LinkLayer link();
+    FrameLayer link();
 }
 
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1() {

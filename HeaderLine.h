@@ -3,19 +3,22 @@
 
 class HeaderLine {
 	std::string host;
-
-public:
-	HeaderLine() {};
-
-	HeaderLine(std::string h) {
-		this->host = h;
-	}
-
 private:
 	void setHost(std::string hostIn) {
 		host = hostIn;
 	}
 	std::string getHost() {
 		return host;
+	}
+
+public:
+	//add a construtor to populate the instant vars.
+	HeaderLine() {};
+
+	HeaderLine(std::string h) {
+		this->host = h;
+	}
+	std::string toString() {
+		return "This is the HeaderLine output: " + host;
 	}
 };

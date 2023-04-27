@@ -7,19 +7,6 @@ class RequestLine {
 	std::string http_ver;
 	std::string cr;
 	std::string lf;
-
-public:
-	//add a construtor to populate the instant vars.
-	RequestLine() {};
-
-	RequestLine(std::string m, std::string r, std::string v, std::string cr, std::string lf) {
-		this->method = m;
-		this->URL = r;
-		this->http_ver = v;
-		this->cr = cr;
-		this->lf = lf;
-	};
-
 private:
 	void setMethod(std::string met) {
 		method = met;
@@ -40,5 +27,20 @@ private:
 		return http_ver;
 	}
 
-};
 
+public:
+	//add a construtor to populate the instant vars.
+	RequestLine() {};
+
+	RequestLine(std::string m, std::string r, std::string v, std::string cr, std::string lf) {
+		this->method = m;
+		this->URL = r;
+		this->http_ver = v;
+		this->cr = cr;
+		this->lf = lf;
+	};
+	std::string toString() {
+		return
+			"The requestLine method: " + method;
+	}
+};

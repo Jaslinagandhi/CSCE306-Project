@@ -2,6 +2,6 @@
 #include <string>
 #include "HTTPMsg.h"
 
-int main(){
+int main() {
 	HTTPMsg httpmsg();
 }

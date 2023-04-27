@@ -3,10 +3,6 @@
 #include <list>
 #include <cstdlib>
 #include <string>
-
-#include "RequestLine.h"
-#include "HTTPMsg.h"
-#include "TCPSegment.h"
 #include "NetworkLayer.h"
 
 class FrameLayer {
@@ -73,6 +69,9 @@ class FrameLayer {
 	}
 	__int64 getInterFrameGap() {
 		return interFrameGap;
+	}
+	std::string toString() {
+		return "In FrameLayer, following are the crc of the msg: "+crc ;
 	}
 
 };
