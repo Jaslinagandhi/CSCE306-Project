@@ -8,6 +8,8 @@
 #include "HeaderLine.h"
 #include "HTTPMsg.h"
 #include "TCPSegment.h"
+#include "NetworkLayer.h"
+#include "FrameLayer.h"
 
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1();
 std::string goingThroughGETFile2();
@@ -31,6 +33,12 @@ int main() {
     __int16 sourcePort = 0;
     __int16 destPort = 0;
     TCPSegment tcps(httpmsg, sourcePort, destPort);
+
+    //network layer
+    NetworkLayer network();
+
+    //link layer
+    LinkLayer link();
 }
 
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1() {
