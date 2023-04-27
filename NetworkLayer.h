@@ -6,8 +6,9 @@
 #include "RequestLine.h"
 #include "HTTPMsg.h"
 #include "TCPSegment.h"
+#include "Message.h"
 
-class NetworkLayer {
+class NetworkLayer:public Message {
 	TCPSegment tcp;
 	__int8 version=4;
 	__int8 ihl=0;
@@ -27,10 +28,13 @@ class NetworkLayer {
 
 public:
 	NetworkLayer()=default;
-	NetworkLayer(TCPSegment tcpp, __int32 sipp, __int32 dipp) {
+	NetworkLayer(TCPSegment tcpp, std::string sipp, std::string dipp) {
 		this->tcp = tcpp;
 		this->sip = sipp;
 		this->dip = dipp;
+	}
+	std::string getLayerName() {
+		return "Network Layer";
 	}
 	__int8 getVersion() {
 		return version;

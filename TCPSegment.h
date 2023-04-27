@@ -2,8 +2,9 @@
 #include <cstdlib>
 #include <iostream>
 #include "HTTPMsg.h"
+#include "Message.h"
 
-class TCPSegment {
+class TCPSegment: public Message {
 private:
 	int sequenceNum;
 	__int16 acknowledgeNum;
@@ -13,8 +14,11 @@ private:
 	__int16 windowSize;
 	__int16 checkSum;
 	__int16 urgentPointer;
+	__int16 destPort;
+	__int16 sourcePort;
 
 public:
+	TCPSegment() =default;
 	TCPSegment(HTTPMsg hmsg, __int16 sPort, __int16 dPort) {
 		this->sourcePort = sPort;
 		this->destPort = dPort;
@@ -23,17 +27,16 @@ public:
 		dataOffset = 5;
 		res = 0;
 		flags = 0;
-		windowSize = 65535;
+		windowSize = 65;
 		checkSum = 0;
 		urgentPointer = 0;
 		this->httpmsg = hmsg;
-	};
-
-	TCPSegment() {};
+	}
 	HTTPMsg httpmsg;
-	//generate two numbers - one for sourcePort, one for destPort
-	__int16 sourcePort = (1024 + (rand() % 65535));
-	__int16 destPort = (1024 + (rand() % 65535));
+
+	std::string getLayerName() {
+		return "TCP";
+	}
 
 	void setSourcePort(__int16 source) {
 		sourcePort = source;
@@ -56,7 +59,7 @@ public:
 	void setAcknowledgeNum(__int8 acknowledge) {
 		__int8 acknowledgeNum = acknowledge;
 	}
-	__int8 getAcknowledgeNum() {
+	__int16 getAcknowledgeNum() {
 		return acknowledgeNum;
 	}
 	void setDataOffset(__int8 offset) {
@@ -97,6 +100,7 @@ public:
 	}
 
 	std::string toString() {
-		return "In TCP later, the following is the source IP of the message: " + sourcePort;
+		
+		return "In TCP later, the following is the source port of the message: " + std::to_string(this->sourcePort);
 	}
 };

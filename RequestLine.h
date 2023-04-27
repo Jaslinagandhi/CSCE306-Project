@@ -17,13 +17,13 @@ private:
 	void setURL(std::string link) {
 		URL = link;
 	}
-	std::string getMethod() {
+	std::string geturl() {
 		return URL;
 	}
 	void setVersion(std::string vers) {
 		http_ver = vers;
 	}
-	std::string getMethod() {
+	std::string gethttp() {
 		return http_ver;
 	}
 

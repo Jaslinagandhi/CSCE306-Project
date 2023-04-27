@@ -4,8 +4,9 @@
 #include <list>
 #include "RequestLine.h"
 #include "HeaderLine.h"
+#include "Message.h"
 
-class HTTPMsg {
+class HTTPMsg: public Message {
 private:
     RequestLine rlo;
     HeaderLine hlo;
@@ -14,14 +15,17 @@ private:
 public:
     HTTPMsg() {};
 
-    HTTPMsg(RequestLine rl, HeaderLine hl, std::string b = "") {
+    HTTPMsg(RequestLine rl, HeaderLine hl, std::string b = "0") {
         this->rlo = rl;
         this->hlo = hl;
         this->body = b;
     }
+    std::string getLayerName() {
+        return "HTTP";
+    }
 
     std::string toString() {
         
-        std::cout << "In HTTPmsg, following are the content of the msg: " <<  rlo.toString() << std::endl;
+       return "In HTTPmsg, following are the content of the msg: " +body;
     }
 };

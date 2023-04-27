@@ -4,29 +4,30 @@
 #include <cstdlib>
 #include <string>
 #include "NetworkLayer.h"
+#include "Message.h"
 
-class FrameLayer {
+class FrameLayer:public Message {
 	NetworkLayer network;
 	long int preamble;
-	char destMac[6];
-	char sourceMac[6];
+	std::string destMac;
+	std::string  sourceMac;
 	__int16 type;
 	__int32 crc;
 	__int64 interFrameGap;
 	FrameLayer() = default;
+public:
 	FrameLayer(NetworkLayer networkk, long int preamble, char destMacc[6], char sourceMacc[6], __int16 typee, __int32 crcc,
 		__int64 interFrameGapp) {
 		this->network = networkk;
 		this->preamble = preamble;
-		for (int i = 0;i < 6;i++) {
-			this->destMac[i] = destMacc[i];
-		}
-		for (int j = 0;j < 6;j++) {
-			this->sourceMac[j] = sourceMacc[j];
-		}
+		this->destMac = destMacc;
+		this->sourceMac = sourceMacc;
 		this->type = typee;
 		this->crc = crcc;
 		this->interFrameGap = interFrameGapp;
+	}
+	std::string getLayerName() {
+		return "Link Layer";
 	}
 	void setPreamble(long int pre) {
 		preamble = pre;
@@ -34,23 +35,17 @@ class FrameLayer {
 	long int getPreamble() {
 		return preamble;
 	}
-	void setDestMac(char mac[6]) {
-		for (int i = 0;i < 6;i++) {
-			destMac[i] = mac[i];
-		}
+	void setDestMac(std::string mac) {
+		this->destMac = mac;
 	}
-	char*  getDestMac() {
-		char* mac = destMac;
-		return mac;
+	std::string  getDestMac() {
+		 return destMac;
 	}
-	void setSourceMac(char mac[6]) {
-		for (int i = 0;i < 6;i++) {
-			sourceMac[i] = mac[i];
-		}
+	void setSourceMac(std::string mac) {
+		 this->sourceMac = mac;
 	}
-	char* getSourceMac() {
-		char* mac = sourceMac;
-		return mac;
+	std::string getSourceMac() {
+		return sourceMac;
 	}
 	void setType(__int16 typee) {
 		type = typee;
@@ -71,7 +66,7 @@ class FrameLayer {
 		return interFrameGap;
 	}
 	std::string toString() {
-		return "In FrameLayer, following are the crc of the msg: "+crc ;
+		return "In FrameLayer, following are the crc of the msg: "+std::to_string(crc) ;
 	}
 
 };

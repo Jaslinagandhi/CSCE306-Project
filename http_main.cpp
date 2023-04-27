@@ -4,6 +4,7 @@
 #include <fstream>
 #include <sstream>
 #include <tuple>
+#include <queue>
 #include "RequestLine.h"
 #include "HeaderLine.h"
 #include "HTTPMsg.h"
@@ -12,10 +13,13 @@
 #include "FrameLayer.h"
 
 
+
+
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1();
 std::string goingThroughGETFile2();
 
 int main() {
+    std::queue<Message> buffer;
     //make string variables to hold values from file
     std::string method, URL, version;
     std::string host;
@@ -28,18 +32,38 @@ int main() {
     HeaderLine hl(host);
 
     HTTPMsg httpmsg(rl, hl);
+    std::cout << httpmsg.toString() << std::endl;
+
+    //add the httpmsg to the queue 
+    buffer.push(httpmsg);
+    std::cout << buffer.size() << std::endl;
 
     //tcp segment
     //create and initialize variables for source and destination ports
-    __int16 sourcePort = 0;
-    __int16 destPort = 0;
+        //generate two numbers - one for sourcePort, one for destPort
+    __int16 sourcePort = (1024 + (rand() % 65535));
+    __int16 destPort = (1024 + (rand() % 65535));
+
+    //HTTPMsg httpmsg2 = buffer.pop();
     TCPSegment tcps(httpmsg, sourcePort, destPort);
+    std::cout << tcps.toString() << std::endl;
 
     //network layer
-    NetworkLayer network();
+    // make a function that builds what the layer needs
 
+    std::string sipp = "0";
+    std::string dipp = "0";
+    NetworkLayer network(tcps, sipp, dipp);
+    std::cout << network.toString() << std::endl;
     //link layer
-    FrameLayer link();
+    long int preamble=0; 
+    char destMac[6]; 
+    char sourceMac[6];
+    __int16 type=0; 
+    __int32 crc=0;
+    __int64 interFrameGapp=0;
+    FrameLayer link(network, preamble, destMac, sourceMac, type, crc, interFrameGapp);
+    std::cout << link.toString() << std::endl;
 }
 
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1() {
