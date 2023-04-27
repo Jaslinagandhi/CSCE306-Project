@@ -19,4 +19,26 @@ public:
 		this->cr = cr;
 		this->lf = lf;
 	};
+
+private:
+	void setMethod(std::string met) {
+		method = met;
+	}
+	std::string getMethod() {
+		return method;
+	}
+	void setURL(std::string link) {
+		URL = link;
+	}
+	std::string getMethod() {
+		return URL;
+	}
+	void setVersion(std::string vers) {
+		http_ver = vers;
+	}
+	std::string getMethod() {
+		return http_ver;
+	}
+
 };
+
