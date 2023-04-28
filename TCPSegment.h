@@ -4,21 +4,22 @@
 #include "HTTPMsg.h"
 #include "Message.h"
 
-class TCPSegment: public Message {
+class TCPSegment : public Message {
 private:
 	int sequenceNum;
 	__int16 acknowledgeNum;
 	__int8 dataOffset;
-	__int8 res;
-	__int8 flags;
+	__int8 res = 0;
+	__int8 flags = 0;
 	__int16 windowSize;
 	__int16 checkSum;
 	__int16 urgentPointer;
-	__int16 destPort;
-	__int16 sourcePort;
+	__int16 destPort = 80;
+	__int16 sourcePort = 1029;
 
 public:
-	TCPSegment() =default;
+{
+	TCPSegment() = default;
 	TCPSegment(HTTPMsg hmsg, __int16 sPort, __int16 dPort) {
 		this->sourcePort = sPort;
 		this->destPort = dPort;
@@ -101,6 +102,12 @@ public:
 
 	std::string toString() {
 		
-		return "In TCP later, the following is the source port of the message: " + std::to_string(this->sourcePort);
+		return "\nIn TCP later, the following is the content of the message: \nSource Port: " + std::to_string(this->sourcePort)+
+			"\nDestination Port: "+std::to_string(this->destPort)+
+			"\nSequence Number: "+ std::to_string(sequenceNum) +
+			"\nAcknowledgment Number:" + std::to_string(acknowledgeNum)+
+			"\nData Offset:" + std::to_string( dataOffset)+
+			"\nres: " + std::to_string(res)+
+			"\nFlags: " + std::to_string(flags)+ "\nWindow Size:" + std::to_string(windowSize)+"\nCheck Sum:" + std::to_string(checkSum) + "\nUrgent Pointer:" + std::to_string(urgentPointer)+"\n";
 	}
 };

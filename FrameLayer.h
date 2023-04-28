@@ -9,8 +9,8 @@
 class FrameLayer:public Message {
 	NetworkLayer network;
 	long int preamble;
-	std::string destMac;
-	std::string  sourceMac;
+	std::string destMac="00-00-5e-00-53-af";
+	std::string  sourceMac="00-07-E9-42-AC-28";
 	__int16 type;
 	__int32 crc;
 	__int64 interFrameGap;

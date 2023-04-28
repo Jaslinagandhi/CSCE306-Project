@@ -36,7 +36,7 @@ int main() {
 
     //add the httpmsg to the queue 
     buffer.push(httpmsg);
-    std::cout << buffer.size() << std::endl;
+    //std::cout << buffer.size() << std::endl;
 
     //tcp segment
     //create and initialize variables for source and destination ports
@@ -44,8 +44,8 @@ int main() {
     __int16 sourcePort = (1024 + (rand() % 65535));
     __int16 destPort = (1024 + (rand() % 65535));
 
-    //HTTPMsg httpmsg2 = buffer.pop();
-    TCPSegment tcps(httpmsg, sourcePort, destPort);
+    HTTPMsg httpmsg2 =  buffer.front();
+    TCPSegment tcps(httpmsg2, sourcePort, destPort);
     std::cout << tcps.toString() << std::endl;
 
     //network layer

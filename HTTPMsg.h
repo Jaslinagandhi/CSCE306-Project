@@ -26,6 +26,7 @@ public:
 
     std::string toString() {
         
-       return "In HTTPmsg, following are the content of the msg: " +body;
+       return "In HTTPmsg, following are the content of the msg: \nBody: "
+           + body+"\nrequest Line:"+rlo.toString()+"\nHost Line: "+hlo.toString();
     }
 };

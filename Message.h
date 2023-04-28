@@ -2,5 +2,14 @@
 #include <iostream>
 
 class Message {
-    virtual std::string  getLayerName() = 0;
+public:
+    Message() {};
+    virtual std::string  getLayerName()  { 
+        return "Message";
+    };
+    virtual ~Message();
+
+    virtual std::string toString() {
+        return "Hi from Message.toString()";
+    }
 };

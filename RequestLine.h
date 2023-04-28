@@ -7,7 +7,7 @@ class RequestLine {
 	std::string http_ver;
 	std::string cr;
 	std::string lf;
-private:
+public:
 	void setMethod(std::string met) {
 		method = met;
 	}
@@ -41,6 +41,6 @@ public:
 	};
 	std::string toString() {
 		return
-			"The requestLine method: " + method;
+			"The requestLine method: " + method+"\nThe requestLine URL: "+URL+"\nThe requestLine http_ver: "+http_ver+"\n";
 	}
 };
