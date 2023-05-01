@@ -16,7 +16,7 @@ class FrameLayer:public Message {
 	__int64 interFrameGap;
 	FrameLayer() = default;
 public:
-	FrameLayer(NetworkLayer networkk, long int preamble, char destMacc[6], char sourceMacc[6], __int16 typee, __int32 crcc,
+	FrameLayer(NetworkLayer networkk, long int preamble, std::string destMacc, std::string sourceMacc, __int16 typee, __int32 crcc,
 		__int64 interFrameGapp) {
 		this->network = networkk;
 		this->preamble = preamble;
@@ -66,7 +66,8 @@ public:
 		return interFrameGap;
 	}
 	std::string toString() {
-		return "In FrameLayer, following are the crc of the msg: "+std::to_string(crc) ;
+		return "In FrameLayer, following are the crc of the msg: " + std::to_string(crc) + "\nPreamble: " + std::to_string(preamble) +
+			"\nDestination Mac: " + destMac + "\nSource Mac: " + sourceMac + "\nType: " + std::to_string(type) + "\nInter Frame Gap:" + std::to_string(interFrameGap);
 	}
 
 };

@@ -24,7 +24,7 @@ class NetworkLayer:public Message {
 	std::string sip = "192.152.22.117";
 	std::string dip = "195.155.1.10";
 
-	std::string options=" ";
+	std::string options="0";
 
 public:
 	NetworkLayer()=default;
@@ -119,7 +119,12 @@ public:
 		return options;
 	}
 	std::string toString() {
-		return "In Network, following are the source ip of the msg: "+ sip;
+		return "In Network, following are the source ip of the msg: \nversion:" + std::to_string(version) +"\nihl: "+
+			 std::to_string(ihl) +"\ndscp: "+ std::to_string(dscp)+"\necn: "+ std::to_string(ecn)+"\nTotal length "+ std::to_string(totalLength)
+			+"\nidentification "+ std::to_string(identification)+"\nflags: "+ std::to_string(flags)+
+			"\nfragment offset: "+ std::to_string(fragmentOffset)+"\ntime to live: "+ std::to_string(timeToLive)+"\nprotocol: "+
+			std::to_string(protocol)+"\nheader checksum: "+ std::to_string(headerChecksum)+"\nsource ip: "+
+			sip + "\ndestination ip: "+dip+"\noptions: "+ options;
 	}
 			
 };

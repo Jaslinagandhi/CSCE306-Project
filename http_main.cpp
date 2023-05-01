@@ -44,8 +44,8 @@ int main() {
     __int16 sourcePort = (1024 + (rand() % 65535));
     __int16 destPort = (1024 + (rand() % 65535));
 
-    HTTPMsg httpmsg2 =  buffer.front();
-    TCPSegment tcps(httpmsg2, sourcePort, destPort);
+    //HTTPMsg httpmsg2 = buffer.front();
+    TCPSegment tcps(httpmsg, sourcePort, destPort);
     std::cout << tcps.toString() << std::endl;
 
     //network layer
@@ -56,12 +56,12 @@ int main() {
     NetworkLayer network(tcps, sipp, dipp);
     std::cout << network.toString() << std::endl;
     //link layer
-    long int preamble=0; 
-    char destMac[6]; 
-    char sourceMac[6];
-    __int16 type=0; 
-    __int32 crc=0;
-    __int64 interFrameGapp=0;
+    long int preamble = 0;
+    std::string destMac= "00-00-5e-00-53-af";
+    std::string sourceMac= "00-07-E9-42-AC-28";
+    __int16 type = 0;
+    __int32 crc = 0;
+    __int64 interFrameGapp = 0;
     FrameLayer link(network, preamble, destMac, sourceMac, type, crc, interFrameGapp);
     std::cout << link.toString() << std::endl;
 }

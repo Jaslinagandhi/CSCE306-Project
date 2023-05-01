@@ -4,6 +4,12 @@
 #include "HTTPMsg.h"
 #include "Message.h"
 
+#pragma once
+#include <cstdlib>
+#include <iostream>
+#include "HTTPMsg.h"
+#include "Message.h"
+
 class TCPSegment : public Message {
 private:
 	int sequenceNum;
@@ -18,7 +24,7 @@ private:
 	__int16 sourcePort = 1029;
 
 public:
-{
+
 	TCPSegment() = default;
 	TCPSegment(HTTPMsg hmsg, __int16 sPort, __int16 dPort) {
 		this->sourcePort = sPort;
@@ -101,13 +107,13 @@ public:
 	}
 
 	std::string toString() {
-		
-		return "\nIn TCP later, the following is the content of the message: \nSource Port: " + std::to_string(this->sourcePort)+
-			"\nDestination Port: "+std::to_string(this->destPort)+
-			"\nSequence Number: "+ std::to_string(sequenceNum) +
-			"\nAcknowledgment Number:" + std::to_string(acknowledgeNum)+
-			"\nData Offset:" + std::to_string( dataOffset)+
-			"\nres: " + std::to_string(res)+
-			"\nFlags: " + std::to_string(flags)+ "\nWindow Size:" + std::to_string(windowSize)+"\nCheck Sum:" + std::to_string(checkSum) + "\nUrgent Pointer:" + std::to_string(urgentPointer)+"\n";
+
+		return "\nIn TCP later, the following is the content of the message: \nSource Port: " + std::to_string(this->sourcePort) +
+			"\nDestination Port: " + std::to_string(this->destPort) +
+			"\nSequence Number: " + std::to_string(sequenceNum) +
+			"\nAcknowledgment Number:" + std::to_string(acknowledgeNum) +
+			"\nData Offset:" + std::to_string(dataOffset) +
+			"\nres: " + std::to_string(res) +
+			"\nFlags: " + std::to_string(flags) + "\nWindow Size:" + std::to_string(windowSize) + "\nCheck Sum:" + std::to_string(checkSum) + "\nUrgent Pointer:" + std::to_string(urgentPointer) + "\n";
 	}
 };
