@@ -39,8 +39,9 @@ public:
 		urgentPointer = 0;
 		this->httpmsg = hmsg;
 	}
+	//create http message object
 	HTTPMsg httpmsg;
-
+	//getters and setters for all attributes
 	std::string getLayerName() {
 		return "TCP";
 	}
@@ -105,7 +106,7 @@ public:
 	__int16 getUrgentPointer() {
 		return urgentPointer;
 	}
-
+	//String method that prints all values
 	std::string toString() {
 
 		return "\nIn TCP later, the following is the content of the message: \nSource Port: " + std::to_string(this->sourcePort) +

@@ -2,11 +2,13 @@
 #include <string>
 
 class RequestLine {
+	//define all attributes
 	std::string method;
 	std::string URL;
 	std::string http_ver;
 	std::string cr;
 	std::string lf;
+//setters and getters for all attributes
 public:
 	void setMethod(std::string met) {
 		method = met;
@@ -27,8 +29,6 @@ public:
 		return http_ver;
 	}
 
-
-public:
 	//add a construtor to populate the instant vars.
 	RequestLine() {};
 
@@ -39,6 +39,7 @@ public:
 		this->cr = cr;
 		this->lf = lf;
 	};
+	//String method that prints all values
 	std::string toString() {
 		return
 			"The requestLine method: " + method+"\nThe requestLine URL: "+URL+"\nThe requestLine http_ver: "+http_ver+"\n";

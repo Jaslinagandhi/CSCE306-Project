@@ -13,8 +13,6 @@
 #include "FrameLayer.h"
 
 
-
-
 std::tuple<std::string, std::string, std::string> goingThroughGETFile1();
 std::string goingThroughGETFile2();
 
@@ -32,6 +30,7 @@ int main() {
     HeaderLine hl(host);
 
     HTTPMsg httpmsg(rl, hl);
+    std::cout << "---------------------------------------------------------------" << std::endl;
     std::cout << httpmsg.toString() << std::endl;
 
     //add the httpmsg to the queue 
@@ -46,14 +45,15 @@ int main() {
 
     //HTTPMsg httpmsg2 = buffer.front();
     TCPSegment tcps(httpmsg, sourcePort, destPort);
+    std::cout << "---------------------------------------------------------------" << std::endl;
     std::cout << tcps.toString() << std::endl;
 
     //network layer
     // make a function that builds what the layer needs
-
     std::string sipp = "0";
     std::string dipp = "0";
     NetworkLayer network(tcps, sipp, dipp);
+    std::cout << "---------------------------------------------------------------" << std::endl;
     std::cout << network.toString() << std::endl;
     //link layer
     long int preamble = 0;
@@ -63,6 +63,7 @@ int main() {
     __int32 crc = 0;
     __int64 interFrameGapp = 0;
     FrameLayer link(network, preamble, destMac, sourceMac, type, crc, interFrameGapp);
+    std::cout << "---------------------------------------------------------------" << std::endl;
     std::cout << link.toString() << std::endl;
 }
 

@@ -1,6 +1,7 @@
 #pragma once
 #include <iostream>
 
+//parent class that following classes inherit from
 class Message {
 public:
     Message() {};

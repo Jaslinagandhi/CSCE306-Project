@@ -1,4 +1,5 @@
 #pragma once
+//Import included files and previous header files
 #include <iostream>
 #include <list>
 #include <cstdlib>
@@ -6,7 +7,9 @@
 #include "NetworkLayer.h"
 #include "Message.h"
 
+//Let framelayer inherit from message class
 class FrameLayer:public Message {
+	//define attributes
 	NetworkLayer network;
 	long int preamble;
 	std::string destMac="00-00-5e-00-53-af";
@@ -14,8 +17,9 @@ class FrameLayer:public Message {
 	__int16 type;
 	__int32 crc;
 	__int64 interFrameGap;
-	FrameLayer() = default;
+	FrameLayer() = default; //default constructor
 public:
+	//overloaded constructor
 	FrameLayer(NetworkLayer networkk, long int preamble, std::string destMacc, std::string sourceMacc, __int16 typee, __int32 crcc,
 		__int64 interFrameGapp) {
 		this->network = networkk;
@@ -26,6 +30,7 @@ public:
 		this->crc = crcc;
 		this->interFrameGap = interFrameGapp;
 	}
+	//get and set methods for all attributes
 	std::string getLayerName() {
 		return "Link Layer";
 	}
@@ -65,8 +70,9 @@ public:
 	__int64 getInterFrameGap() {
 		return interFrameGap;
 	}
+	//String method that prints all values
 	std::string toString() {
-		return "In FrameLayer, following are the crc of the msg: " + std::to_string(crc) + "\nPreamble: " + std::to_string(preamble) +
+		return "In FrameLayer, following are the content of the message:\ncrc: " + std::to_string(crc) + "\nPreamble: " + std::to_string(preamble) +
 			"\nDestination Mac: " + destMac + "\nSource Mac: " + sourceMac + "\nType: " + std::to_string(type) + "\nInter Frame Gap:" + std::to_string(interFrameGap);
 	}
 
